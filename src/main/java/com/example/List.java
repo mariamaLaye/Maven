@@ -15,7 +15,7 @@ public class List {
 			int dotIndex; // position of . in filename
 			String line = null; // a line from the input file
 
-			// 1. ask user for a file name (or file path)
+			// 1.  (or file path)
 
 			System.out.println("Creation du fichier");
 			filenameInList = "list.txt";
@@ -23,14 +23,17 @@ public class List {
 
 			try {
 
-				// 3. rename .txt as .html
+				// Proggramme puisse lire le fichier
 				fileIn = new Scanner(new FileReader(filenameInList));
+				//Trouver le . avant l'extension
 				dotIndex = filenameInList.lastIndexOf(".");
 				if (dotIndex == -1) {
 					filenameOut = filenameInList + ".html";
 				} else {
 					filenameOut = filenameInList.substring(0, dotIndex) + ".html";
 				}
+				//PrintWriter est une sous-classe de Writer, qui est utilisée pour imprimer 
+				//des données formatées dans un OutputStream ou un autre Writer qu'il gère
 				fileOut = new PrintWriter(filenameOut);
 
 				// 4. determine if file is empty
@@ -46,12 +49,15 @@ public class List {
 					// 5. read each line and insert necessary <tags>
 					fileOut.println("<html>");
 					fileOut.println("<head>");
-					fileOut.println("<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css' integrity='sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm' crossorigin='anonymous'>");
-					fileOut.println("<script src='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js' integrity='sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p' crossorigin='anonymous'></script>");
+					fileOut.println("<meta charset='utf-8'>");
+					fileOut.println("<meta name='viewport' content='width=device-width, initial-scale=1'>");
+					fileOut.println("<link href='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3' crossorigin='anonymous'>");
 					fileOut.println("</head>");
 					fileOut.println("<body'>");
-					fileOut.println("<div class='list-group'>");
-					fileOut.println("<a  class='list-group-item list-group-item-action list-group-item-primary'  href='site_MSPR/index.html'>");
+					fileOut.println("<h1 class='m-5'>Liste des employées</h1>");
+					fileOut.println("<div class='container m-5'>");
+					fileOut.println("<div class='row'>");
+					fileOut.println("<a  class='list-group-item list-group-item-action list-group-item-primary'  c.bertier.html'>");
 					fileOut.println(line);
 					fileOut.println("</a>");
 					while (fileIn.hasNextLine()) {
@@ -62,12 +68,15 @@ public class List {
 						if (line.isEmpty()) {
 							fileOut.println("<br>");
 						} else {
+							fileOut.println("<div  id='btn' class='col-3 bg-light m-2 p-3'>");
 							fileOut.println("<a class='list-group-item list-group-item-action list-group-item-primary' href='site_MSPR/index.html'>");
 							fileOut.println(line);
 							fileOut.println("</a>");
+							fileOut.println("</div>");
 						}
 
 					}
+					fileOut.println("</div>");
 					fileOut.println("</div>");
 					fileOut.println("</body>");
 					fileOut.println("</html>");
